@@ -1,0 +1,16 @@
+#!/bin/bash
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y httpie
+
+cd $HOME
+git clone git@github.com:dpb1857/synced
+if [ $? -ne 0 ]; then
+  echo "Try 'ssh -A'"
+  exit 1
+fi
+
+./synced/setup/02-LinkDotFilesSynth.sh
+git config --global user.email "don.bennett@synhtego.com"
+git config --global user.name "Don Bennett"
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y emacs
